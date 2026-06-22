@@ -129,8 +129,6 @@ The package is organised around a small set of independent modules. Screening lo
 
 ```
 
----
-
 ## Methodology
 
 1. **Governing reading.** For each well, the **deepest** BHT measurement is
