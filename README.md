@@ -104,6 +104,30 @@ print("LOOCV gradient RMSE:", out.field.loocv_rmse_c_per_km, "°C/km")
 pip install -e ".[dashboard]"
 streamlit run dashboard/app.py
 ```
+## Repository structure
+
+```text
+geothermal-suitability-piemonte/
+
+├── src/gsp/
+│   ├── data/              # Pydantic models and validated loaders
+│   ├── screening/         # suitability engine and thresholds
+│   ├── interpolation/    # IDW, LOOCV and gradient field
+│   ├── viz/              # Folium maps and Plotly figures
+│   ├── cli/              # command-line interface
+│   └── pipeline.py       # orchestration layer
+│
+├── dashboard/            # Streamlit application
+├── datasets/             # canonical BHT and coordinate tables
+├── notebooks/            # reproducible walkthroughs
+├── tests/                # pytest suite
+├── docs/                 # methodology, assumptions and limitations
+└── .github/workflows/    # CI
+```
+
+The package is organised around a small set of independent modules. Screening logic, interpolation, visualisation and user interfaces are separated to preserve transparency, reproducibility and ease of maintenance.
+
+```
 
 ---
 
