@@ -141,7 +141,7 @@ Two canonical tables in [`datasets/`](datasets/):
 
 Source: BHT archives and well headers compiled from **ViDEPI** and
 **GEOTHOPICA** public records for Piemonte. Corrected temperatures originate
-from an MSc thesis on reusing legacy BHT archives for geothermal screening in
+from my MSc thesis on reusing legacy BHT archives for geothermal screening in
 the Po Plain.
 
 ---
