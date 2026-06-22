@@ -158,7 +158,14 @@ mypy src/gsp          # strict type check
 CI runs on Python 3.12 and 3.13.
 
 ---
+## Future work
 
+- Uncertainty-aware interpolation
+- Additional geothermal datasets
+- Integration with legacy well integrity assessments
+- Coupling with CO₂ storage screening workflows
+
+  ---
 ## License
 
 MIT — see [`LICENSE`](LICENSE). Data records are derived from public sources
