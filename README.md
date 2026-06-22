@@ -127,8 +127,7 @@ geothermal-suitability-piemonte/
 
 The package is organised around a small set of independent modules. Screening logic, interpolation, visualisation and user interfaces are separated to preserve transparency, reproducibility and ease of maintenance.
 
-```
-```
+
 ## Methodology
 
 1. **Governing reading.** For each well, the **deepest** BHT measurement is
