@@ -54,6 +54,7 @@ def _gradient_overlay_png(field: GradientField, depth_m: float) -> tuple[str, li
     matplotlib.use("Agg")
     import matplotlib.colors as mcolors
     from matplotlib import colormaps
+
     temp = field.predicted_temperature(depth_m)
     # Normalise to a fixed, interpretable range for direct-use screening.
     norm = mcolors.Normalize(vmin=30.0, vmax=150.0)

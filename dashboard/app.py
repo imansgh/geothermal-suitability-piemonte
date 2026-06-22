@@ -27,9 +27,7 @@ from gsp.viz.charts import (
 )
 from gsp.viz.maps import SUITABILITY_COLORS, build_map
 
-st.set_page_config(
-    page_title="Geothermal Suitability — Po Plain", layout="wide", page_icon="🌋"
-)
+st.set_page_config(page_title="Geothermal Suitability — Po Plain", layout="wide", page_icon="🌋")
 
 st.title("🌋 Geothermal Suitability Screening — Po Plain, Piemonte")
 st.caption(
@@ -43,7 +41,10 @@ with st.sidebar:
     st.header("Controls")
     reference_depth = st.slider(
         "Reference depth for predicted-T overlay (m)",
-        min_value=1000, max_value=5000, value=2000, step=250,
+        min_value=1000,
+        max_value=5000,
+        value=2000,
+        step=250,
     )
     resolution = st.select_slider(
         "Interpolation grid resolution", options=[40, 60, 80, 100, 120], value=80
@@ -108,9 +109,7 @@ with col_left:
     st.plotly_chart(suitability_ranking(results), use_container_width=True)
 with col_right:
     st.subheader("Depth vs temperature")
-    st.plotly_chart(
-        depth_temperature_scatter(data["measurements"]), use_container_width=True
-    )
+    st.plotly_chart(depth_temperature_scatter(data["measurements"]), use_container_width=True)
 
 # --- Validation ---
 st.subheader("Interpolation validation (leave-one-out cross-validation)")
