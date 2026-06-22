@@ -1,0 +1,88 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "gsp"
+version = "0.1.0"
+description = "Geothermal suitability screening for legacy hydrocarbon wells in the Piemonte sector of the Po Plain, from BHT archives."
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+authors = [{ name = "Iman Saghafifar" }]
+keywords = [
+    "geothermal",
+    "well reuse",
+    "bottom-hole temperature",
+    "BHT correction",
+    "Po Plain",
+    "energy transition",
+    "spatial interpolation",
+    "petroleum engineering",
+]
+
+dependencies = [
+    "pydantic>=2.6",
+    "PyYAML>=6.0",
+    "pandas>=2.0",
+    "numpy>=1.26",
+    "openpyxl>=3.1",
+]
+
+[project.optional-dependencies]
+viz = ["folium>=0.15", "plotly>=5.20", "matplotlib>=3.8", "pillow>=10.0"]
+dashboard = ["streamlit>=1.30", "folium>=0.15", "plotly>=5.20", "matplotlib>=3.8", "pillow>=10.0", "streamlit-folium>=0.20"]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+    "ruff>=0.4",
+    "mypy>=1.9",
+    "types-PyYAML",
+    "pandas-stubs",
+]
+all = [
+    "folium>=0.15",
+    "plotly>=5.20",
+    "matplotlib>=3.8",
+    "pillow>=10.0",
+    "streamlit>=1.30",
+    "streamlit-folium>=0.20",
+]
+
+[project.scripts]
+gsp = "gsp.cli.main:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/gsp"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"datasets" = "gsp/datasets"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+src = ["src"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "D"]
+ignore = ["D203", "D213"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["D"]
+"src/gsp/viz/maps.py" = ["E501"]  # inline HTML popup strings
+"dashboard/*" = ["D"]
+"notebooks/*" = ["D"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+files = ["src/gsp"]
+
+[[tool.mypy.overrides]]
+module = ["folium", "folium.*", "plotly", "plotly.*", "matplotlib", "matplotlib.*", "streamlit", "streamlit_folium", "PIL", "PIL.*"]
+ignore_missing_imports = true

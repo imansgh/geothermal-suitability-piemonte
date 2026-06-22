@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata below."
+type: software
+title: "Geothermal Suitability Screening — Po Plain (Piemonte)"
+version: 0.1.0
+date-released: "2025-01-01"
+license: MIT
+abstract: >
+  A reproducible Python workflow that screens legacy hydrocarbon wells in the
+  Piemonte sector of the Po Plain for geothermal reuse, using bottom-hole
+  temperature archives, Horner/hybrid corrections, a transparent multi-criteria
+  suitability classification, and cross-validated inverse-distance interpolation
+  of the geothermal gradient.
+keywords:
+  - geothermal energy
+  - well reuse
+  - bottom-hole temperature
+  - spatial interpolation
+  - energy transition
+  - Po Plain
+authors:
+  - family-names: Saghafifar
+    given-names: Iman
+repository-code: "https://github.com/imansgh/geothermal-suitability-piemonte"
+url: "https://github.com/imansgh/geothermal-suitability-piemonte"

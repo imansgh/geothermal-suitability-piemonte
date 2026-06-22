@@ -1,0 +1,32 @@
+# =============================================================================
+# Geothermal suitability screening thresholds
+# =============================================================================
+# All criteria for classifying a well's geothermal reuse potential live here so
+# the methodology is transparent and tunable without code changes.
+#
+# Thresholds follow conventional low-enthalpy geothermal practice:
+#   * direct-use heating typically requires >= 60 deg C,
+#   * binary/ORC power generation typically targets >= 120 deg C,
+#   * shallower/cooler wells may still support ground-source heat-pump schemes.
+# These are screening guides, NOT site-specific feasibility criteria.
+# =============================================================================
+
+schema_version: 1
+
+# Assumed mean annual surface temperature (deg C) used to derive the apparent
+# geothermal gradient from a single corrected bottom-hole reading.
+surface_temperature_c: 15.0
+
+# Classification gates, evaluated from highest grade to lowest. A well is
+# assigned the first class whose temperature AND depth conditions it meets.
+classes:
+  power_generation:
+    min_temperature_c: 120.0
+    min_depth_m: 1000.0
+  direct_use:
+    min_temperature_c: 60.0
+    min_depth_m: 1000.0
+  ground_source_hp:
+    min_temperature_c: 40.0
+    min_depth_m: 0.0
+  # Anything below ground_source_hp.min_temperature_c falls to "Below Threshold".
