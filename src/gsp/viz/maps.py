@@ -52,13 +52,12 @@ def _gradient_overlay_png(field: GradientField, depth_m: float) -> tuple[str, li
     import matplotlib
 
     matplotlib.use("Agg")
-    import matplotlib.cm as cm
     import matplotlib.colors as mcolors
-
+    from matplotlib import colormaps
     temp = field.predicted_temperature(depth_m)
     # Normalise to a fixed, interpretable range for direct-use screening.
     norm = mcolors.Normalize(vmin=30.0, vmax=150.0)
-    cmap = cm.get_cmap("inferno")
+    cmap = colormaps["inferno"]
     rgba = cmap(norm(temp))
 
     # Fade by support: full alpha within 15 km, transparent beyond 45 km.
