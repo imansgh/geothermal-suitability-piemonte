@@ -22,7 +22,6 @@ prediction error is quantified and openly reported.
 
 ## What it produces
 
-```
 BHT archive (raw + Horner/Hybrid corrected, per depth)
   + well coordinates (WGS84)
         │
@@ -33,7 +32,6 @@ BHT archive (raw + Horner/Hybrid corrected, per depth)
         │       └─ predicted-T surface at a chosen reference depth, faded by data support
         │
         └─► interactive map · ranking chart · depth–T scatter · validation report
-```
 
 ---
 
@@ -103,7 +101,6 @@ print("LOOCV gradient RMSE:", out.field.loocv_rmse_c_per_km, "°C/km")
 ```bash
 pip install -e ".[dashboard]"
 streamlit run dashboard/app.py
-```
 ## Repository structure
 
 ```text
