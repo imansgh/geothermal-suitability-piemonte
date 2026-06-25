@@ -95,7 +95,31 @@ beyond the regional mean.** Consequently:
 
 ---
 
-## 5. Limitations
+## 5. Reproducibility safeguards and classification robustness
+
+Two checks bound the one input the package does not itself derive — the
+corrected bottom-hole temperature.
+
+- **Dataset integrity** ([`gsp.data.integrity`](../src/gsp/data/integrity.py)).
+  Pydantic validates each row; this check validates the *relationships* the
+  corrected column depends on: `T_corrected_C` equals the column named by
+  `correction_method` (Hybrid→`T_hyb_C`, Horner→`T_horn_C`), the correction
+  never cools (`corrected ≥ raw`), values are physical, and every measured well
+  has coordinates. A clean report (the shipped dataset passes, asserted in
+  tests) means a re-run uses exactly the corrected temperatures the methodology
+  describes.
+
+- **Classification robustness** ([`gsp.screening.robustness`](../src/gsp/screening/robustness.py)).
+  Even corrected BHT carries a residual uncertainty of a few °C. Each well is
+  re-classified at `T ± bht_uncertainty_c` (a configurable 1σ band, default
+  10 °C) and flagged `is_robust` only if its class is stable across the whole
+  band; the °C margin to the nearest depth-eligible gate is reported. This is
+  deterministic and **never changes the nominal class** — it only states how
+  much that class can be trusted. See [scientific_review.md](scientific_review.md) §3.
+
+---
+
+## 6. Limitations
 
 - **Sparse, biased sampling.** Wells were sited for hydrocarbon exploration,
   not geothermal characterisation; their spatial distribution is irregular and
@@ -112,7 +136,10 @@ beyond the regional mean.** Consequently:
   scope. (Well-integrity screening is addressed by a companion project, LWRA.)
 - **Correction inherited, not validated here.** The accuracy of the underlying
   Horner/hybrid corrections is documented in the source thesis and is taken as
-  given.
+  given. The dataset's *internal consistency* with that documented process is
+  checked (§5, `gsp.data.integrity`), and the residual uncertainty of the
+  corrected values is propagated into classification robustness (§5), but the
+  correction itself is not re-derived in this repository.
 
 These limitations are why the deliverable is framed as a screening and triage
 tool that points to where a detailed, data-rich feasibility study would be

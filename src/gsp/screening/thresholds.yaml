@@ -17,6 +17,15 @@ schema_version: 1
 # geothermal gradient from a single corrected bottom-hole reading.
 surface_temperature_c: 15.0
 
+# Assumed 1-sigma uncertainty (deg C) on the CORRECTED bottom-hole temperature.
+# Even after a Horner/analytical correction, archive BHT data retain a residual
+# uncertainty of several deg C. This value is used ONLY by the robustness check
+# (gsp.screening.robustness) to flag wells whose suitability class would change
+# within +/- this band of their corrected temperature. It does NOT alter the
+# nominal classification. Engineering-judgement default; calibrate per basin and
+# correction method (see docs/scientific_review.md).
+bht_uncertainty_c: 10.0
+
 # Classification gates, evaluated from highest grade to lowest. A well is
 # assigned the first class whose temperature AND depth conditions it meets.
 classes:

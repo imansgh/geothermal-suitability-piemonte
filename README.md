@@ -127,7 +127,7 @@ geothermal-suitability-piemonte/
 
 The package is organised around a small set of independent modules. Screening logic, interpolation, visualisation and user interfaces are separated to preserve transparency, reproducibility and ease of maintenance.
 
-
+```
 ## Methodology
 
 1. **Governing reading.** For each well, the **deepest** BHT measurement is
@@ -147,9 +147,14 @@ The package is organised around a small set of independent modules. Screening lo
    `T = T_surface + gradient × depth`.
 6. **Honest visualisation.** Map cells far from any well are progressively
    faded, and the LOOCV error is printed alongside every surface.
+7. **Robustness & integrity.** Each class is flagged robust only if it survives
+   a ±1σ BHT-uncertainty band ([`gsp.screening.robustness`](src/gsp/screening/robustness.py)),
+   and the dataset's internal consistency with its stated correction is verified
+   ([`gsp.data.integrity`](src/gsp/data/integrity.py)).
 
 Full assumptions and limitations: [`docs/methodology.md`](docs/methodology.md).
----
+Independent audit and assumption classification: [`docs/scientific_review.md`](docs/scientific_review.md).
+```
 ---
 
 ## Data
